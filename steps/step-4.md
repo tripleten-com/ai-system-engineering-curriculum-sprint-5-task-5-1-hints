@@ -22,19 +22,19 @@ The evidence note is the other half of the proof. It records what you saw, with 
 
 ### Your tests aren't collected
 
-<details><summary>Move 1</summary>
+<details><summary>Hint 1</summary>
 
 Run `poe student-tests`. Does it report your test count, or zero?
 
 </details>
 
-<details><summary>Move 2</summary>
+<details><summary>Hint 2</summary>
 
 Read the `student-tests` entry in `pyproject.toml`. Which folder does it collect from?
 
 </details>
 
-<details><summary>Move 3</summary>
+<details><summary>Hint 3</summary>
 
 Check your file name and your test function names. Do they follow the same pattern as the existing tests under `tests/unit/`?
 
@@ -42,25 +42,25 @@ Check your file name and your test function names. Do they follow the same patte
 
 ### Breaking the code doesn't make any test fail
 
-<details><summary>Move 1</summary>
+<details><summary>Hint 1</summary>
 
 Which rule did you break, and which test claims to guard it? Read that test line by line.
 
 </details>
 
-<details><summary>Move 2</summary>
+<details><summary>Hint 2</summary>
 
 Does the test build exactly the case the rule rejects? A test that builds a valid proposal can't notice a missing rejection.
 
 </details>
 
-<details><summary>Move 3</summary>
+<details><summary>Hint 3</summary>
 
 What does the test do if construction succeeds? A rejection test must fail when no error is raised. Look at how `tests/unit/domain/test_domain.py` asserts a rejection.
 
 </details>
 
-<details><summary>Move 4</summary>
+<details><summary>Hint 4</summary>
 
 Does the test match the error message, or only the error type? Match the message, so a failure on a different field doesn't count as a pass.
 
@@ -68,19 +68,19 @@ Does the test match the error message, or only the error type? Match the message
 
 ### Each break takes minutes to check
 
-<details><summary>Move 1</summary>
+<details><summary>Hint 1</summary>
 
 Which command are you running after each break? Does it start the whole stack?
 
 </details>
 
-<details><summary>Move 2</summary>
+<details><summary>Hint 2</summary>
 
 Your contract tests need no stack. Which command runs only your tests, in seconds?
 
 </details>
 
-<details><summary>Move 3</summary>
+<details><summary>Hint 3</summary>
 
 Use that command for every break-and-restore, and keep `poe verify` for the final run after your last code change.
 
@@ -88,19 +88,19 @@ Use that command for every break-and-restore, and keep `poe verify` for the fina
 
 ### A test passes even though it can't fail
 
-<details><summary>Move 1</summary>
+<details><summary>Hint 1</summary>
 
 What would have to change in the code for this test to fail? If you can't name a change, the test asserts something that's always true.
 
 </details>
 
-<details><summary>Move 2</summary>
+<details><summary>Hint 2</summary>
 
 Does the test check values, or only that an object exists? A constructed proposal always has a kind.
 
 </details>
 
-<details><summary>Move 3</summary>
+<details><summary>Hint 3</summary>
 
 Check the boundary from both sides: the lowest valid count and one below it. Would your tests notice if the bound moved by one?
 
@@ -108,19 +108,19 @@ Check the boundary from both sides: the lowest valid count and one below it. Wou
 
 ### You don't know which `poe verify` run to cite
 
-<details><summary>Move 1</summary>
+<details><summary>Hint 1</summary>
 
 Which run checked your final code? Did you change any code after it, even a test?
 
 </details>
 
-<details><summary>Move 2</summary>
+<details><summary>Hint 2</summary>
 
 If you changed code afterwards, run `poe verify` again. That's the run to cite.
 
 </details>
 
-<details><summary>Move 3</summary>
+<details><summary>Hint 3</summary>
 
 Write the note after that run, with its command and time. The note isn't code, so writing it doesn't undo the run. Then run `poe contract` and `poe auth-checks` once more, because `poe verify` runs neither.
 

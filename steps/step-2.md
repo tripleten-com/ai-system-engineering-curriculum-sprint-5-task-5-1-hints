@@ -22,25 +22,25 @@ The controls from Project 4 are the other half of the baseline. Token verificati
 
 ### A contract check fails, or passes without the message you expected
 
-<details><summary>Move 1</summary>
+<details><summary>Hint 1</summary>
 
 Which of the four checks failed, and at which test? Read the test's name in the output.
 
 </details>
 
-<details><summary>Move 2</summary>
+<details><summary>Hint 2</summary>
 
 Is the stack running? Two of the four checks need it: `poe queue-contract` and `poe runtime-contract`. `poe contract` and `poe fidelity-check` only read files.
 
 </details>
 
-<details><summary>Move 3</summary>
+<details><summary>Hint 3</summary>
 
 If `poe queue-contract` passes but you never saw its success sentence, open the test it runs. Does the test read the container's output and assert the sentence for you?
 
 </details>
 
-<details><summary>Move 4</summary>
+<details><summary>Hint 4</summary>
 
 These checks run unchanged from Project 4. If one fails on a fresh start, it's the environment, not your code: restart the stack, run it again, and if it still fails, keep the output and contact course support.
 
@@ -48,19 +48,19 @@ These checks run unchanged from Project 4. If one fails on a fresh start, it's t
 
 ### Your port list doesn't match what a reviewer expects
 
-<details><summary>Move 1</summary>
+<details><summary>Hint 1</summary>
 
 Did you take the methods from the port or from an adapter?
 
 </details>
 
-<details><summary>Move 2</summary>
+<details><summary>Hint 2</summary>
 
 Open each file in `src/ports/` and find the class that is a `Protocol`. List only the methods it declares.
 
 </details>
 
-<details><summary>Move 3</summary>
+<details><summary>Hint 3</summary>
 
 Check your list against `src/ports/__init__.py`. Does it export exactly the five ports you listed?
 
@@ -68,19 +68,19 @@ Check your list against `src/ports/__init__.py`. Does it export exactly the five
 
 ### You can't say what the emulator can't prove
 
-<details><summary>Move 1</summary>
+<details><summary>Hint 1</summary>
 
 Open `docs/fidelity/ModelProvider.md`. Which part lists what the emulator proves, and which part lists what no local check can show?
 
 </details>
 
-<details><summary>Move 2</summary>
+<details><summary>Hint 2</summary>
 
 For each limit, ask: what would you need a real model for, to see it? Behavior under load, answers you didn't script, and cost are typical.
 
 </details>
 
-<details><summary>Move 3</summary>
+<details><summary>Hint 3</summary>
 
 Write the limits in your own words, one or two sentences. They go into your note's **What I'd defend** as the limits of every check in this Task.
 
@@ -88,25 +88,25 @@ Write the limits in your own words, one or two sentences. They go into your note
 
 ### A token row looks wrong
 
-<details><summary>Move 1</summary>
+<details><summary>Hint 1</summary>
 
 What's the difference between "we don't know who you are" and "we know who you are, and you may not do this"? Which status code goes with each?
 
 </details>
 
-<details><summary>Move 2</summary>
+<details><summary>Hint 2</summary>
 
 For each fixture name, ask whether the token itself is genuine. A forged or expired token is a different case from a genuine token for the wrong job.
 
 </details>
 
-<details><summary>Move 3</summary>
+<details><summary>Hint 3</summary>
 
 Which fixtures are genuine tokens issued for another service altogether? The API can't accept those as a caller, so they're not a permission problem.
 
 </details>
 
-<details><summary>Move 4</summary>
+<details><summary>Hint 4</summary>
 
 Compare every row with the lesson's list, one by one. A table that prints a row for each fixture only passes when every status matches.
 
@@ -114,19 +114,19 @@ Compare every row with the lesson's list, one by one. A table that prints a row 
 
 ### The version id and fingerprint don't match
 
-<details><summary>Move 1</summary>
+<details><summary>Hint 1</summary>
 
 When did the worker last present a key? `poe provider-auth-check` reports the most recent authentication.
 
 </details>
 
-<details><summary>Move 2</summary>
+<details><summary>Hint 2</summary>
 
 Run `poe auth-checks` first. It creates an exception, so the worker authenticates again. Then read the authentication record.
 
 </details>
 
-<details><summary>Move 3</summary>
+<details><summary>Hint 3</summary>
 
 Was the secret rotated since then? Compare the current and previous versions in `poe secret-status` with the one the record reports. The record should match the current version.
 

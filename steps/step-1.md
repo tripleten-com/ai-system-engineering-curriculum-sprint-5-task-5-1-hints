@@ -23,25 +23,25 @@ Every exception Coldline handles leaves two kinds of record, and they answer dif
 
 ### The stack won't start, or `poe ready` keeps waiting
 
-<details><summary>Move 1</summary>
+<details><summary>Hint 1</summary>
 
 Which service is it waiting for? Read the last lines `poe ready` printed before it stopped or timed out.
 
 </details>
 
-<details><summary>Move 2</summary>
+<details><summary>Hint 2</summary>
 
 Run `docker compose ps` and look for a service that isn't healthy or has exited. That service's log usually says why. Read it with `docker compose logs` and the service's name, or with `poe runtime-logs`.
 
 </details>
 
-<details><summary>Move 3</summary>
+<details><summary>Hint 3</summary>
 
 Is another stack already using one of the ports Coldline needs? Check whether something else on your machine is running a database, a queue emulator or a web server on the same port.
 
 </details>
 
-<details><summary>Move 4</summary>
+<details><summary>Hint 4</summary>
 
 Follow **Start the system** in `README.md` from the top, in order, on a clean start. A step skipped earlier, such as the tooling bootstrap, often shows up later as a service that never becomes healthy.
 
@@ -49,25 +49,25 @@ Follow **Start the system** in `README.md` from the top, in order, on a clean st
 
 ### The exception ends in `COMPLETED`, not `NEEDS_REVIEW`
 
-<details><summary>Move 1</summary>
+<details><summary>Hint 1</summary>
 
 Which answer did you ask the emulator for? Read the command you ran and the `state` it printed.
 
 </details>
 
-<details><summary>Move 2</summary>
+<details><summary>Hint 2</summary>
 
 Look at the options `poe scenario` accepts. Which response makes the model's answer stop partway, so the guardrail can't accept it?
 
 </details>
 
-<details><summary>Move 3</summary>
+<details><summary>Hint 3</summary>
 
 Each run creates a new exception. If you ran the command more than once, check that the id you kept belongs to the run that ended in `NEEDS_REVIEW`.
 
 </details>
 
-<details><summary>Move 4</summary>
+<details><summary>Hint 4</summary>
 
 Run the scenario with the malformed response, keep the new id, and use only that id for the rest of the Step.
 
@@ -75,19 +75,19 @@ Run the scenario with the malformed response, keep the new id, and use only that
 
 ### You can't find the request in the trace viewer
 
-<details><summary>Move 1</summary>
+<details><summary>Hint 1</summary>
 
 Which id are you searching for? The command prints a trace id, not just an exception id.
 
 </details>
 
-<details><summary>Move 2</summary>
+<details><summary>Hint 2</summary>
 
 Open Jaeger at the URL in `README.md`, choose the API service, and search by the trace id. Does the time range include the moment you ran the scenario?
 
 </details>
 
-<details><summary>Move 3</summary>
+<details><summary>Hint 3</summary>
 
 The worker continues the trace the API started. If you see only the API's spans, wait a few seconds and search again: the worker's spans arrive when it finishes.
 
@@ -95,19 +95,19 @@ The worker continues the trace the API started. If you see only the API's spans,
 
 ### You can't find where the answer was rejected
 
-<details><summary>Move 1</summary>
+<details><summary>Hint 1</summary>
 
 Where are you looking: in the trace, or in the audit trail? Which of the two records decisions?
 
 </details>
 
-<details><summary>Move 2</summary>
+<details><summary>Hint 2</summary>
 
 Search the trace for a span that carries the guardrail's verdict. If none does, the trace isn't where that fact lives.
 
 </details>
 
-<details><summary>Move 3</summary>
+<details><summary>Hint 3</summary>
 
 Run `poe audit-trail` with your exception id and find the event that carries a `reason_code`. That's the refusal, and the record stores the same code as its rejection reason.
 
@@ -115,19 +115,19 @@ Run `poe audit-trail` with your exception id and find the event that carries a `
 
 ### The audit trail has more events than you expected
 
-<details><summary>Move 1</summary>
+<details><summary>Hint 1</summary>
 
 Which events did the worker write, and which ones came from someone reading the exception afterwards?
 
 </details>
 
-<details><summary>Move 2</summary>
+<details><summary>Hint 2</summary>
 
 Compare each event's trace id with your `api_trace_id`. Events from later reads carry the trace id of their own request.
 
 </details>
 
-<details><summary>Move 3</summary>
+<details><summary>Hint 3</summary>
 
 Count the reads since the worker finished, including the one `poe scenario` makes itself. Each read of the stored outcome adds one event at the end of the trail. Keep the worker's four events in order for your note, and mention the reads after them.
 
